@@ -1,0 +1,46 @@
+public class DbService {
+    private static final JdbcTemplate JDBC_TEMPLATE = DatabaseUtils.getJdbcTemplate(UBI_DB.getPath());
+
+    /**
+     * Запросы
+     */
+
+    @Step("Вставка")
+    public void insertBusinessLine(String code) {
+        String sql = "INSERT INTO property.lines (code, description) VALUES(?, ?)";
+        String desc =  "lol" + LocalDate.now().format(DateTimeFormatter.ofPattern(DATE_FORMAT_WITH_DOTS));
+        JDBC_TEMPLATE.update(String.Format(sql, code, desc));
+    }
+
+    @Step("Вставка")
+    public void insertBusinessLineDeleted(String code) {
+        String sql = "INSERT INTO property.lines (code, description, deleted) VALUES(?, ?, ?)";
+        JDBC_TEMPLATE.update(getSqlString(sql, code, "kek" +
+                LocalDate.now().format(DateTimeFormatter.ofPattern(DATE_FORMAT_WITH_DOTS)), true));
+    }
+
+    @Step("Вставка")
+    public void insertBusinessLineDeleted(String code) {
+        String sql = "INSERT INTO property.lines (code, description, deleted) VALUES(?, ?, ?)";
+        JDBC_TEMPLATE.update(getSqlString(sql, code, "kek" +
+                LocalDate.now().format(DateTimeFormatter.ofPattern(DATE_FORMAT_WITH_DOTS)), true));
+    }
+
+    // some logic here
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+}

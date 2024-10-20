@@ -94,6 +94,7 @@ func ToUnified(from, to string, content string, edits []TextEdit) Unified {
 	for _, edit := range edits {
 		start := edit.Span.Start().Line() - 1
 		end := edit.Span.End().Line() - 1
+		toLine += start - last
 		switch {
 		case h != nil && start == last:
 			//direct extension
@@ -107,7 +108,6 @@ func ToUnified(from, to string, content string, edits []TextEdit) Unified {
 				addEqualLines(h, lines, last, last+edge)
 				u.Hunks = append(u.Hunks, h)
 			}
-			toLine += start - last
 			h = &Hunk{
 				FromLine: start + 1,
 				ToLine:   toLine + 1,
@@ -182,16 +182,8 @@ func (u Unified) Format(f fmt.State, r rune) {
 			}
 		}
 		fmt.Fprint(f, "@@")
-		if fromCount > 1 {
-			fmt.Fprintf(f, " -%d,%d", hunk.FromLine, fromCount)
-		} else {
-			fmt.Fprintf(f, " -%d", hunk.FromLine)
-		}
-		if toCount > 1 {
-			fmt.Fprintf(f, " +%d,%d", hunk.ToLine, toCount)
-		} else {
-			fmt.Fprintf(f, " +%d", hunk.ToLine)
-		}
+		fmt.Fprintf(f, " -%d,%d", hunk.FromLine, fromCount)
+		fmt.Fprintf(f, " +%d,%d", hunk.ToLine, toCount)
 		fmt.Fprint(f, " @@\n")
 		for _, l := range hunk.Lines {
 			switch l.Kind {

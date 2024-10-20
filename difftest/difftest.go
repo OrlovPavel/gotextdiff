@@ -38,7 +38,7 @@ var TestCases = []struct {
 	In:   "fruit\n",
 	Out:  "cheese\n",
 	Unified: UnifiedPrefix + `
-@@ -1 +1 @@
+@@ -1,1 +1,1 @@
 -fruit
 +cheese
 `[1:],
@@ -49,7 +49,7 @@ var TestCases = []struct {
 	In:   "gord\n",
 	Out:  "gourd\n",
 	Unified: UnifiedPrefix + `
-@@ -1 +1 @@
+@@ -1,1 +1,1 @@
 -gord
 +gourd
 `[1:],
@@ -60,7 +60,7 @@ var TestCases = []struct {
 	In:   "groat\n",
 	Out:  "goat\n",
 	Unified: UnifiedPrefix + `
-@@ -1 +1 @@
+@@ -1,1 +1,1 @@
 -groat
 +goat
 `[1:],
@@ -71,7 +71,7 @@ var TestCases = []struct {
 	In:   "loud\n",
 	Out:  "lord\n",
 	Unified: UnifiedPrefix + `
-@@ -1 +1 @@
+@@ -1,1 +1,1 @@
 -loud
 +lord
 `[1:],
@@ -82,7 +82,7 @@ var TestCases = []struct {
 	In:   "blanket\n",
 	Out:  "bunker\n",
 	Unified: UnifiedPrefix + `
-@@ -1 +1 @@
+@@ -1,1 +1,1 @@
 -blanket
 +bunker
 `[1:],
@@ -107,7 +107,7 @@ var TestCases = []struct {
 	In:   "A",
 	Out:  "B",
 	Unified: UnifiedPrefix + `
-@@ -1 +1 @@
+@@ -1,1 +1,1 @@
 -A
 \ No newline at end of file
 +B
@@ -119,7 +119,7 @@ var TestCases = []struct {
 	In:   "A",
 	Out:  "AB",
 	Unified: UnifiedPrefix + `
-@@ -1 +1 @@
+@@ -1,1 +1,1 @@
 -A
 \ No newline at end of file
 +AB
@@ -132,7 +132,7 @@ var TestCases = []struct {
 	In:   "A",
 	Out:  "A\n",
 	Unified: UnifiedPrefix + `
-@@ -1 +1 @@
+@@ -1,1 +1,1 @@
 -A
 \ No newline at end of file
 +A

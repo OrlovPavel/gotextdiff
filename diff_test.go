@@ -1,13 +1,26 @@
 package gotextdiff_test
 
 import (
+	_ "embed"
 	"fmt"
+	"strings"
 	"testing"
 
+	"github.com/hexops/gotextdiff"
 	diff "github.com/hexops/gotextdiff"
 	"github.com/hexops/gotextdiff/difftest"
+	"github.com/hexops/gotextdiff/myers"
 	"github.com/hexops/gotextdiff/span"
 )
+
+//go:embed test_resources/old.java.txt
+var javaOld string
+
+//go:embed test_resources/new.java.txt
+var javaNew string
+
+//go:embed test_resources/desired.txt
+var javaDiff string
 
 func TestApplyEdits(t *testing.T) {
 	for _, tc := range difftest.TestCases {
@@ -56,6 +69,17 @@ func TestUnified(t *testing.T) {
 				}
 			}
 		})
+	}
+}
+
+func TestUnifiedOutput(t *testing.T) {
+	edits := myers.ComputeEdits(span.URIFromPath(""), javaOld, javaNew)
+	diffRaw := fmt.Sprint(gotextdiff.ToUnified("", "", javaOld, edits))
+
+	diff := strings.Join(strings.Split(diffRaw, "\n")[2:], "\n")
+
+	if javaDiff != diff {
+		t.Errorf("got diff:\n%v\nexpected:\n%v", diffRaw, javaDiff)
 	}
 }
 
