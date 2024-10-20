@@ -6,11 +6,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/hexops/gotextdiff"
-	diff "github.com/hexops/gotextdiff"
-	"github.com/hexops/gotextdiff/difftest"
-	"github.com/hexops/gotextdiff/myers"
-	"github.com/hexops/gotextdiff/span"
+	"github.com/OrlovPavel/gotextdiff"
+	diff "github.com/OrlovPavel/gotextdiff"
+	"github.com/OrlovPavel/gotextdiff/difftest"
+	"github.com/OrlovPavel/gotextdiff/myers"
+	"github.com/OrlovPavel/gotextdiff/span"
 )
 
 //go:embed test_resources/old.java.txt
